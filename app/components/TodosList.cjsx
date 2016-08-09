@@ -1,34 +1,39 @@
 React = require 'react'
+Todo = require './Todo'
+Form = require './Form'
+classNames = require 'classnames';
 
 todos = [
   {
     task: "Make coffescript React tutorial",
-    isCompleted: 'false'
+    isCompleted: false
   },
   {
     task: "Upload tutorial to GitHub",
-    isCompleted: 'false'
+    isCompleted: false
   }
 ]
 
 class TodosList extends React.Component
   constructor: (props) ->
-    super props
+    super(props)
     @state =
       todos: todos
 
-  renderItems: (todos) ->
-    <li key={item.task}>
-      <p>{item.task}</p>
-      <strong>Completed: {item.isCompleted}</strong>
-    </li> for item in todos
+  updateTodos: (newTodo) ->
+    allTodos = @state.todos.concat([newTodo])
+    @setState(todos: allTodos)
+
+  renderTodos: (todos) ->
+    <Todo key={todo.task} todo={todo} /> for todo in todos
 
   render: ->
     <div>
       <h1>Tasks</h1>
       <ul>
-        {this.renderItems(todos)}
+        {@renderTodos(@state.todos)}
       </ul>
+      <Form onFormSubmit={@updateTodos.bind(this)} />
     </div>
 
 module.exports = TodosList

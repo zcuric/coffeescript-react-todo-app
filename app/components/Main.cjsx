@@ -2,9 +2,9 @@ React = require 'react'
 ReactDOM = require 'react-dom'
 TodosList = require './TodosList'
 
-Main = React.createClass
+class Main extends React.Component
   render: ->
     <TodosList />
 
 
-ReactDOM.render <Main/>, document.getElementById 'app'
+ReactDOM.render(<Main/>, document.getElementById('app'))
