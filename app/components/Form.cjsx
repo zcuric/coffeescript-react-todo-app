@@ -23,8 +23,10 @@ class Form extends React.Component
 
   render: ->
     <form onSubmit={@handleSubmit.bind(this)}>
-      <input type="text" onChange={this.onChange.bind(this)} value={@state.task} />
-      <input type='submit' value='Add'/>
+      <div className="form-group">
+        <input className="form-control" type="text" onChange={this.onChange.bind(this)} value={@state.task} />
+      </div>
+      <input className="btn btn-default" type='submit' value='Add'/>
     </form>
 
 module.exports = Form
